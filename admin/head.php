@@ -48,7 +48,13 @@ $timestamp = strtotime($dateString);
 $formattedDate = date('l - F d Y, g:i A', $timestamp);
 
 $adm = mysqli_query($con,"SELECT * FROM users WHERE roles = 1");
-
+$bra = mysqli_query($con,"select users.usersFirstName, users.usersLastName, users.email ,users.profile,users.usersID,  branch_staff.roles, branches.Branch_Name from branch_staff join users on  branch_staff.usersID = users.usersID join branches on branches.branchID = branch_staff.branchID where branch_staff.roles = 1");
+$inv = mysqli_query($con,"select users.usersFirstName, users.usersLastName, users.email ,users.profile,users.usersID,  branch_staff.roles, branches.Branch_Name from branch_staff join users on  branch_staff.usersID = users.usersID join branches on branches.branchID = branch_staff.branchID where branch_staff.roles = 2");
+$staf = mysqli_query($con,"select users.usersFirstName, users.usersLastName, users.email ,users.profile,users.usersID,  branch_staff.roles, branches.Branch_Name from branch_staff join users on  branch_staff.usersID = users.usersID join branches on branches.branchID = branch_staff.branchID where branch_staff.roles = 3");
+$n_roles = mysqli_query($con,"SELECT * FROM users WHERE roles = 2");
+$brc = mysqli_query($con,"SELECT * FROM branches;");
+$stt = mysqli_query($con," select * from Settings where SettingsId =1;");
+$settings = mysqli_fetch_assoc($stt);
 
         // ->Profile.php ---------------------------------------------------------------------------------------------------
                 if(empty($profile['usersFirstName'])){
@@ -117,6 +123,18 @@ $adm = mysqli_query($con,"SELECT * FROM users WHERE roles = 1");
         
         // Check-Profile.php ---------------------------------------------------------------------------------------------------
         // Branches.php ---------------------------------------------------------------------------------------------------
+        if(isset($_GET['delete'])){
+            $delete = $_GET['delete'];
+            $brans = mysqli_query($con,"DELETE FROM branches WHERE branchID = $delete");
+            echo "<script>alert('Successfully Deleted');window.location.href='branches.php'</script>";
+           }
+        if(isset($_GET['branch'])){
+        $editbranch = $_GET['branch'];
+        $brans = mysqli_query($con,"SELECT * FROM branches WHERE branchID = $editbranch");
+        $branch = mysqli_fetch_assoc($brans);
+        $branchIDD = $branch['branchID'];
+       }
+        
         if(isset($_POST['createbranch'])){
             if(empty($_POST['branch_name'])){
                 $errors['branch_name'] = "Please Provide a Branch Name";
@@ -153,11 +171,118 @@ $adm = mysqli_query($con,"SELECT * FROM users WHERE roles = 1");
                         $errors['cant'] = "Cant Save to Database $branch_name";
                     }
                 }
+            }else{
+                if(count($errors) === 0){
+                    $insert = mysqli_query($con,"UPDATE branches SET usersID='$id', Branch_Name = '$branch_name', Branch_Address = '$branch_address', city = '$branch_city', Branch_Contact_number = '$branch_number', branch_email  = '$branch_email' WHERE branchID = $editbranch");
+                    if($insert){
+                        echo "<script>alert('Branch $branch_name Successfully Updated');window.location.href='branches.php'</script>";
+                    }else {
+                        $errors['cant'] = "Cant Save to Database $branch_name";
+                    }
+                }
             }
             
         }
         // Branches.php ---------------------------------------------------------------------------------------------------
 
+        if(isset($_POST['addstaff'])){
+            $name = mysqli_real_escape_string($con, $_POST['username']);
+            $email = mysqli_real_escape_string($con, $_POST['email']);
+            $password = mysqli_real_escape_string($con, $_POST['password']);
+            $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
+            if($password !== $cpassword){
+                $errors['password'] = "Confirm password not matched!";
+            }
+            $email_check = "SELECT * FROM users WHERE email = '$email'";
+            $res = mysqli_query($con, $email_check);
+            if(mysqli_num_rows($res) > 0){
+                $errors['email'] = "Email that you have entered is already exist!";
+            }
+            $usernameck = "SELECT * FROM users WHERE username = '$name'";
+            $ress= mysqli_query($con, $usernameck);
+            if(mysqli_num_rows($ress) > 0){
+                $errors['username'] = "User Name that you have entered is not Available, please create another user name";
+            }
+            if(count($errors) === 0){
+                $encpass = password_hash($password, PASSWORD_BCRYPT);
+                $code = rand(999999, 111111);
+                $status = "notverified";
+                $insert_data = "INSERT INTO users (username, email, password, code, status) values('$name', '$email', '$encpass', '$code', '$status')";
+                $data_check = mysqli_query($con, $insert_data);
+                if($data_check){
+                    $subject = "Congratulations on Becoming the Manager of Fayeed ";
+                    $message = "Dear $email, <br>
+
+                    Congratulations on your new role as the Manager of Fayeed Electronics! We are thrilled to have you as a key member of our team.
+
+                    To ensure the security of your account, we have implemented an email verification process. Please find below your one-time password (OTP) code for verification:
+                        <br><br>
+                    OTP Code: <b style='color: orange;'>$code</b><br>
+                    Assign Email: <b style='color: orange;'>$email</b><br>
+                    Assign Password: <b style='color: orange;'>$password</b><br>
+                    <br><br>
+                    To complete the email verification process, kindly enter the above OTP code on our website. If you did not request this verification or have any concerns, please contact our customer support team immediately.
+                    
+                    At Fayeed Electronics, we prioritize the safety and privacy of our customers. By verifying your email address, we can enhance the security of your account and provide you with a seamless browsing experience.
+                    
+                    Thank you for your cooperation.
+                    
+                    Best regards";
+                    if(email($email, $subject, $message)){
+                        $info = "We've sent a verification code to your email - $email";
+                        $_SESSION['info'] = $info;
+                        $_SESSION['email'] = $email;
+                        $_SESSION['password'] = $password;
+                        header('location: user-otp.php');
+                        exit();
+                    }else{
+                        $errors['otp-error'] = "Failed while sending code!";
+                    }
+                }else{
+                    $errors['db-error'] = "Failed while inserting data into database!";
+                }
+            }
+
+        }
+
+
+        if(isset($_POST['addroles'])){
+
+            
+            if($_POST['userid'] =="#"){
+                $errors['userroles'] = "Please Select user appoint";
+            }else{
+                $userids = $_POST['userid'];
+            }
+            if(!isset($_POST['roles'])){
+                $errors['ersssror'] = "Please roles to appoint ";
+            }else{
+                $roles = $_POST['roles'];
+            }
+            if(count($errors) === 0){
+
+                $insert = mysqli_query($con,"INSERT INTO  branch_staff(branchID,usersID,roles,assigndby) VALUES('$editbranch','$userids','$roles','$id')");
+            echo "<script>alert('Appoint Successfully');window.location.href = 'branches.php'</script>";
+            }
+            
+        }
+
+
+        if(isset($_POST['set1'])){
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $number = $_POST['number'];
+            $update = mysqli_query($con,"UPDATE Settings SET System_Name='$name', System_Email='$email', System_number='$number' WHERE SettingsId = 1");
+            echo "<script>alert('Settings Updated');window.location.href = 'settings.php'</script>";
+        }
+        if(isset($_POST['set2'])){
+            $smtp = $_POST['smtp'];
+            $pass = $_POST['pass'];
+            $prov = $_POST['prov'];
+            $port = $_POST['port'];
+            $update = mysqli_query($con,"UPDATE Settings SET Smtp_email='$smtp',Smatp_password='$pass', Smtp_Provider='$prov',Smtp_port='$port' WHERE SettingsId = 1");
+            echo "<script>alert('Settings Updated');window.location.href = 'settings.php'</script>";
+        }
         //</queries> ----------------------------------------------------------------------------------------------------------
 
 
@@ -170,7 +295,7 @@ $adm = mysqli_query($con,"SELECT * FROM users WHERE roles = 1");
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Fayeed Electornics</title>
+    <title><?php echo $settings['System_Name']?></title>
    
     <link rel="icon" type="image/png" sizes="16x16" href="../images/site/fayeed.png">
     <link rel="stylesheet" href="../vendor/owl-carousel/css/owl.carousel.min.css">

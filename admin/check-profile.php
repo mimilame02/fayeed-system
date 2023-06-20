@@ -5,7 +5,7 @@
             <a href="index.html" class="brand-logo">
                 <img class="logo-abbr" src="../images/site/fayeed.png" alt="">
                 <img class="logo-compact" src="../images/site/fayeed.png" alt="">
-                <h4 class="brand-title">Fayeed Electornics</h4>
+                <h4 class="brand-title"><?php echo $settings['System_Name']?></h4>
             </a>
 
             <div class="nav-control">

@@ -12,8 +12,8 @@
 @import url(./../vendor/metismenu/css/metisMenu.min.css);
 
 :root{
-  --primary-color: #1d1d1dea; 
-  --primary-color-hover : #FF5D02;
+  --primary-color: #292929; 
+  --primary-color-hover : #626869;
 }
 .gradient_one {
   background-image: linear-gradient(to right, rgba(186, 1, 181, 0.85) 0%, rgba(103, 25, 255, 0.85) 100%); }
@@ -3477,6 +3477,7 @@ input[type="button"].btn-block {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
+  
   border-radius: 0.25rem; }
   .card > hr {
     margin-right: 0;
@@ -8071,15 +8072,14 @@ a {
   z-index: 999; }
 
 .hamburger .line {
-  background: black;
+  background: #593bdb;
   display: block;
   height: 2px;
   margin-top: 6px;
   margin-bottom: 6px;
   margin-left: auto;
   -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  }
+  transition: all 0.3s ease-in-out; }
 
 .hamburger .line:nth-child(1) {
   width: 20px; }
@@ -10298,7 +10298,7 @@ color: white; }
     .quixnav .metismenu li {
       position: relative; }
     .quixnav .metismenu ul {
-      background-color: var(--gray-dark);
+      background-color: #1c0f54;
       transition: all .2s ease-in-out; }
       .quixnav .metismenu ul a {
         padding-left: 54px;
@@ -10587,8 +10587,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     padding-right: 0;
     justify-content: center; }
   [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .nav-header .nav-control .hamburger .line {
-    background-color: black !important;
-    }
+    background-color: #593bdb !important; }
 
 [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .header {
   padding-left: 3.75rem;

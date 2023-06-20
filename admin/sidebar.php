@@ -2,22 +2,22 @@
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
                     <li class="nav-label first">Main Menu</li>
+                   
+                    <li><a href="dashboarsd.php" aria-expanded="false"><i class="fi fi-rr-apps"></i><span class="nav-text">Dashboard</span></a></li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <i class="fi fi-rr-apps"></i> <span class="nav-text">Dashboard</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="../index.html">Dashboard 1</a></li>
-                            <li><a href="../index2.html">Dashboard 2</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                        <i class="fi fi-rr-circle-user"></i><span class="nav-text">Users</span></a>
+                        <i class="fi fi-rr-circle-user"></i><span class="nav-text">Users</span> </a>
                         <ul aria-expanded="false">
                             <li><a href="administrators.php">Administrators</a></li>
-                            <li><a href="../app-calender.html">Branch Maniger</a></li>
+                            <li><a href="manigers.php">Branch Manager</a></li>
+                            <li><a href="inventory-admin.php">inventory Admin</a></li>
+                            <li><a href="staff.php">Staffs</a></li>
+                            <li><a href="noroles.php">No Roles</a></li>
                         </ul>
                     </li>
                     <li><a href="branches.php" aria-expanded="false"><i class="fi fi-rr-code-branch"></i><span class="nav-text">Branches</span></a></li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fi fi-rr-settings"></i><span class="nav-text">System Settings</span></a>
+                    <li><a href="settings.php" aria-expanded="false"><i class="fi fi-rr-settings"></i><span class="nav-text">System Settings</span></a></li>
+                    <li><a href="settingss.php" aria-expanded="false"><i class="fi fi-rr-file-invoice"></i><span class="nav-text">Inventory</span></a></li>
+                    <!--<li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fi fi-rr-settings"></i><span class="nav-text">System Settings</span></a>
                         <ul aria-expanded="false">
                             <li><a href="../chart-flot.html">Flot</a></li>
                             <li><a href="../chart-morris.html">Morris</a></li>
@@ -102,7 +102,7 @@
                             </li>
                             <li><a href="../page-lock-screen.html">Lock Screen</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
 
