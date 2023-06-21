@@ -30,7 +30,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example" class="display" style="min-width: 845px">
+                                    <table id="example" class="display" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>First Name</th>
@@ -52,7 +52,7 @@
                                                 <td><?php if($administratorss['email']==""){ echo ".........";}else{echo $administratorss['email'];}?></td>
                                                 <td><?php if($administratorss['CellNumber']==""){ echo ".........";}else{echo $administratorss['CellNumber'];}?></td>
                                                 <td><?php if($administratorss['Branch_Name']==""){ echo ".........";}else{echo $administratorss['Branch_Name'];}?></td>
-                                                <td><a class="btn btn-primary" href="check-profile.php?profile=<?php echo $administratorss['usersID']?>">See Profile</a></td>
+                                                <td><a class="btn btn-primary btn-secondary" href="check-profile.php?profile=<?php echo $administratorss['usersID']?>">See Profile</a></td>
                                             </tr>
                                             <?php }?>
                                             
@@ -92,5 +92,7 @@
     <script src="../js/dashboard/dashboard-1.js"></script>
     <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="../js/plugins-init/datatables.init.js"></script>
+
+
 </body>
 </html>

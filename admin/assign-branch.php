@@ -108,7 +108,7 @@
                                                         <input type="radio" name="roles" id="" value="3"> staff 
                                                     </div>
                                             </div>
-                                        <button type="submit" name="addroles" class="btn btn-primary"><?php if(isset($branch['Branch_Name'])){ echo "Assign Branch Roles";}else{echo "Create New Branch";} ?></button>
+                                        <button type="submit" name="addroles" class="btn btn-primary btn-secondary"><?php if(isset($branch['Branch_Name'])){ echo "Assign Branch Roles";}else{echo "Create New Branch";} ?></button>
                                     </form>
                             </div>
                         </div>

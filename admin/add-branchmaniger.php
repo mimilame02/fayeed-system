@@ -23,7 +23,7 @@
                         
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title"><?php if(isset($branch['Branch_Name'])){ echo "Update Branch <b>".$branch['Branch_Name']."'s</b> Details";}else{echo "Add Staffs";} ?></h4> <a href="branches.php" class="btn btn-primary">Back</a>
+                                <h4 class="card-title"><?php if(isset($branch['Branch_Name'])){ echo "Update Branch <b>".$branch['Branch_Name']."'s</b> Details";}else{echo "Add Manager";} ?></h4> <a href="branches.php" class="btn btn-primary">Back</a>
                             </div>
                             <div class="card-body"><?php
                     if(count($errors) == 1){
@@ -73,7 +73,7 @@
                                                 <input type="password" name="cpassword" class="form-control" value="<?php echo $branch['branch_email']?>" required>
                                             </div>
                                         </div>
-                                        <button type="submit" name="addstaff" class="btn btn-primary"><?php if(isset($branch['Branch_Name'])){ echo "Update Branch Details";}else{echo "Add user ";} ?></button>
+                                        <button type="submit" name="addstaff" class="btn btn-primary btn-secondary"><?php if(isset($branch['Branch_Name'])){ echo "Update Branch Details";}else{echo "Add user ";} ?></button>
                                     </form>
                                 </div>
                             </div>

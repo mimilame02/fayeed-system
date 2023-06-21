@@ -4,7 +4,7 @@ var html = $('html');
 
 function quixSettings({typography, version, layout, navheaderBg, headerBg, sidebarStyle, sidebarBg, sidebarPosition, headerPosition, containerLayout, direction}) {
     this.typography = typography || "roboto";
-    this.version = version || "light";
+    this.version = version || "dark";
     this.layout = layout || "vertical";
     this.navheaderBg = navheaderBg || "color_1";
     this.headerBg = headerBg || "color_1";
@@ -42,7 +42,7 @@ quixSettings.prototype.manageVersion = function() {
             body.attr("data-theme-version", "transparent");
             break;
         default: 
-            body.attr("data-theme-version", "light");
+            body.attr("data-theme-version", "dark");
     }
 }
 

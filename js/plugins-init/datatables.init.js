@@ -44,9 +44,24 @@ let dataSet = [
     "use strict"
     //example 1
     var table = $('#example').DataTable({
+        responsive: true,
         createdRow: function ( row, data, index ) {
            $(row).addClass('selected')
         } 
+    });
+    table.on('click', 'td.dt-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+ 
+        if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        } else {
+            // Open this row
+            row.child(format(row.data())).show();
+            tr.addClass('shown');
+        }
     });
       
     table.on('click', 'tbody tr', function() {

@@ -75,7 +75,7 @@
                                                 <input type="email" name="branch_email" class="form-control" value="<?php echo $branch['branch_email']?>" required>
                                             </div>
                                         </div>
-                                        <button type="submit" name="createbranch" class="btn btn-primary"><?php if(isset($branch['Branch_Name'])){ echo "Update Branch Details";}else{echo "Create New Branch";} ?></button>
+                                        <button type="submit" name="createbranch" class="btn btn-primary btn-secondary"><?php if(isset($branch['Branch_Name'])){ echo "Update Branch Details";}else{echo "Create New Branch";} ?></button>
                                     </form>
                                 </div>
                             </div>

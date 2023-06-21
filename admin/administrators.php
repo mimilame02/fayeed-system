@@ -61,7 +61,7 @@
                                                 <td><?php if($administratorss['Address']==""){ echo ".........";}else{echo $administratorss['Address'];}?></td>
                                                 <td><?php if($administratorss['email']==""){ echo ".........";}else{echo $administratorss['email'];}?></td>
                                                 <td><?php if($administratorss['CellNumber']==""){ echo ".........";}else{echo $administratorss['CellNumber'];}?></td>
-                                                <td><a class="btn btn-primary" href="check-profile.php?profile=<?php echo $administratorss['usersID']?>">See Profile</a></td>
+                                                <td><a class="btn btn-primary btn-secondary" href="check-profile.php?profile=<?php echo $administratorss['usersID']?>">See Profile</a></td>
                                             </tr>
                                             <?php }?>
                                             

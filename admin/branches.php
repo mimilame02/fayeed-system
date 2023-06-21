@@ -56,8 +56,8 @@
                                                 <td><?php echo $branch['branch_email'] ?></td>
                                                 <td><?php echo $branch['Branch_Contact_number'] ?></td>
                                                 <td>
-                                                <a class="btn btn-primary" href="assign-branch.php?branch=<?php echo $branch['branchID']?>"><i class="fi fi-rr-users-alt"></i></a>
-                                                <a class="btn btn-primary" href="detail-branch.php?branch=<?php echo $branch['branchID']?>"><i class="fi fi-rr-info"></i></a>
+                                                <a class="btn btn-primary btn-secondary" href="assign-branch.php?branch=<?php echo $branch['branchID']?>"><i class="fi fi-rr-users-alt"></i></a>
+                                                <a class="btn btn-primary btn-secondary" href="detail-branch.php?branch=<?php echo $branch['branchID']?>"><i class="fi fi-rr-info"></i></a>
                                                 <a class="btn btn-success" href="add-branches.php?branch=<?php echo $branch['branchID']?>"><i class="fi fi-rr-pen-square"></i></a>
                                                 <a class="btn btn-danger" href="check-profile.php?delete=<?php echo $branch['branchID']?>"><i class="fi fi-rr-trash-list"></i></a></td>
                                             </tr>
